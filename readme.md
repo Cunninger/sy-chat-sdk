@@ -91,6 +91,8 @@ public class SdkController {
 }
 ```
 - 访问端口: `http://<ip>:<port>/sdk/chat?msg=中文回答，现在入行Java咋样？`
+#### 注意事项
+- 因为逆向的是ollama模型，默认回复为英文，如果需要模型回复中文，需要指定语言，如上所示。
 ## 高级配置
 
 ### 自定义消息处理
