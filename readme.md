@@ -21,9 +21,16 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 
 
 ### 配置
+1. 在`pom.xml`文件中添加以下依赖：
+```xml
+<dependency>
+   <groupId>io.gitee.a-little-zhu</groupId>
+   <artifactId>sy-chat-sdk</artifactId>
+   <version>0.0.1</version>
+</dependency>
+```
 
-1. 在`src/main/resources/application.properties`文件中配置以下属性：
-
+2. 在`src/main/resources/application.properties`文件中配置以下属性：
 ```yaml
 sy:
    chat:
@@ -33,7 +40,7 @@ sy:
       max-tokens: 4096
       stream: false
 ```
-2. 在项目启动类中添加`@EnableConfigurationProperties`注解：
+3. 在项目启动类中添加`@EnableConfigurationProperties`注解：
 
 ```java
 @EnableConfigurationProperties(SyChatProperties.class)// 扫描读取yaml配置
@@ -81,7 +88,6 @@ public class SdkController {
 
 }
 ```
-
 ## 高级配置
 
 ### 自定义消息处理
@@ -128,6 +134,3 @@ public class SdkController {
 ## 许可证
 
 本项目采用MIT许可证，详情请参阅[LICENSE](LICENSE)文件。
-```
-
-这个`README.md`文件提供了项目的概述、特性、快速开始指南、配置示例以及高级配置选项，适合展示给开发者和潜在用户。
