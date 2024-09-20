@@ -90,6 +90,7 @@ public class SdkController {
 
 }
 ```
+- 访问端口: `http://<ip>:<port>/sdk/chat?msg=中文回答，现在入行Java咋样？`
 ## 高级配置
 
 ### 自定义消息处理
