@@ -26,7 +26,7 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 <dependency>
    <groupId>io.gitee.a-little-zhu</groupId>
    <artifactId>sy-chat-sdk</artifactId>
-   <version>0.0.1</version>
+   <version>0.0.3</version>
 </dependency>
 ```
 
