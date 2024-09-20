@@ -79,11 +79,13 @@ public class SdkController {
    @Resource
    private SyChatProperties syChatProperties;// 必须引入
    @GetMapping("/chat")
-   public String chat(String msg) throws Exception {
+   public void chat(HttpServletResponse response,String msg) throws Exception {
       SyClient client = new SyClient(syChatProperties);
-      String response = client.chat(msg);
+      String s = client.chat(msg);
       System.out.println(response);
-      return response;
+      response.setCharacterEncoding("UTF-8");
+      response.setContentType("text/plain;charset=UTF-8");
+      response.getWriter().write(s);
    }
 
 }
