@@ -57,7 +57,7 @@ public class ApiSdkApplication {
 
 }
 ```
-
+4. 如果需要本地部署此SDK作二次开发，请自行添加application.yml文件，并补充相关模型配置。
 ### 使用示例
 
 ```java
