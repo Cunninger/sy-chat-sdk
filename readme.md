@@ -61,15 +61,6 @@ public class ApiSdkApplication {
 ### 使用示例
 
 ```java
-package cn.yam.apisdk.controller;
-
-import cn.yam.apisdk.User;
-
-import cn.yam.sychatsdk.SyClient;
-import cn.yam.sychatsdk.config.SyChatProperties;
-import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.*;
-
 /**
  * @author: wsy
  */
