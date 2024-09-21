@@ -11,6 +11,8 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 - **灵活配置**：支持通过`application.properties`或`application.yml`文件进行配置，满足不同环境的需求。
 - **易于集成**：提供简单易用的API，支持快速集成到现有项目中。
 - **扩展性强**：支持自定义消息处理逻辑和模型配置，满足复杂业务需求。
+- **支持ApiKeyPool**: 支持多个ApiKey，提高请求成功率。
+- **负载均衡**: 支持负载均衡，随机选择一个ApiKey进行请求。
 
 ## 快速开始
 
@@ -18,7 +20,7 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 
 - JDK 8或更高版本
 - Maven 3.6.0或更高版本
-
+- SpringBoot 2.X 版本
 
 ### 配置
 1. 在`pom.xml`文件中添加以下依赖：
@@ -33,12 +35,15 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 2. 在`src/main/resources/application.properties`文件中配置以下属性：
 ```yaml
 sy:
-   chat:
-      api-key: 'YBHTRrFtcl0aJOFBPDgpebYwxXWcJGRUplm1PVMeCULc'
-      base-url: 'https://ollama.yamazing.cn/v1/chat/completions'
-      model: 'llama3-8b-8192'
-      max-tokens: 4096
-      stream: false
+  chat:
+    api-keys:
+      - 'YBHTRrFtcl0aJOFBPDgpebYwxXWcJGRUplm1PVMeCULc'
+      - '5kDGIoFl45mK6cWSByMPYQuFrw43ln-cxkS1Iva5WpLq'
+      - 'ztadxOlOPkjoWclRG-xdAe8yPbNCcIoAbdxtbh2fcDC9'
+    base-url: 'https://ollama.yamazing.cn/v1/chat/completions'
+    model: 'llama3-8b-8192'
+    max-tokens: 4096
+    stream: false
 ```
 3. 在项目启动类中添加`@EnableConfigurationProperties`注解：
 
@@ -68,7 +73,7 @@ public class ApiSdkApplication {
 @RequestMapping("/sdk")
 public class SdkController {
    @Resource
-   private SyChatProperties syChatProperties;// 必须引入
+   private SyChatProperties syChatProperties;
    @GetMapping("/chat")
    public void chat(HttpServletResponse response,String msg) throws Exception {
       SyClient client = new SyClient(syChatProperties);
