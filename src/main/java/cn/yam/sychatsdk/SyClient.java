@@ -19,18 +19,28 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 @Component
 public class SyClient {
-
     private final SyChatProperties properties;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final Random random;
 
     @Autowired
-    public SyClient(SyChatProperties properties) {
-        this.properties = properties;
+    public SyClient(SyChatProperties syChatProperties) {
+        this.properties = syChatProperties;
         this.restTemplate = new RestTemplate();
         this.objectMapper = new ObjectMapper();
+        this.random = new Random();
+    }
+
+
+    private String getRandomApiKey() {
+        List<String> apiKeys = properties.getApiKeys();
+        return apiKeys.get(random.nextInt(apiKeys.size()));
     }
 
     /**
@@ -58,7 +68,7 @@ public class SyClient {
         // 构建请求头
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(properties.getApiKey());
+        headers.setBearerAuth(getRandomApiKey());
 
         // 构建消息
         Message message = new Message("user", content);
@@ -82,13 +92,11 @@ public class SyClient {
                 requestEntity,
                 String.class
         );
-
         String responseBody = response.getBody();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(responseBody);
         String result = root.path("choices").get(0).path("message").path("content").asText();
         if (response.getStatusCode().is2xxSuccessful()) {
-            System.out.println(result);
             return result;
         } else {
             throw new RuntimeException("请求失败，状态码：" + response.getStatusCodeValue());
