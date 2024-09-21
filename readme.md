@@ -11,8 +11,8 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 - **灵活配置**：支持通过`application.properties`或`application.yml`文件进行配置，满足不同环境的需求。
 - **易于集成**：提供简单易用的API，支持快速集成到现有项目中。
 - **扩展性强**：支持自定义消息处理逻辑和模型配置，满足复杂业务需求。
-- **支持ApiKeyPool**: 支持多个ApiKey，提高请求成功率。
-- **负载均衡**: 支持负载均衡，随机选择一个ApiKey进行请求。
+- **支持ApiKeyPool**: 支持多个ApiKey，提高请求成功率。(0.0.5之后的版本支持)
+- **负载均衡**: 支持负载均衡，随机选择一个ApiKey进行请求。(0.0.5之后的版本支持)
 
 ## 快速开始
 
@@ -24,6 +24,16 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 
 ### 配置
 1. 在`pom.xml`文件中添加以下依赖：
+- `0.0.5`版本已同步maven中央镜像，拉取到阿里云镜像可能会有延迟。
+```xml
+<dependency>
+   <groupId>io.gitee.a-little-zhu</groupId>
+   <artifactId>sy-chat-sdk</artifactId>
+   <version>0.0.5</version>
+</dependency>
+```
+
+- `0.0.3`版本如下:
 ```xml
 <dependency>
    <groupId>io.gitee.a-little-zhu</groupId>
@@ -32,7 +42,9 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 </dependency>
 ```
 
+
 2. 在`src/main/resources/application.properties`文件中配置以下属性：
+- `>0.0.5`版本配置:
 ```yaml
 sy:
   chat:
@@ -40,6 +52,16 @@ sy:
       - 'YBHTRrFtcl0aJOFBPDgpebYwxXWcJGRUplm1PVMeCULc'
       - '5kDGIoFl45mK6cWSByMPYQuFrw43ln-cxkS1Iva5WpLq'
       - 'ztadxOlOPkjoWclRG-xdAe8yPbNCcIoAbdxtbh2fcDC9'
+    base-url: 'https://ollama.yamazing.cn/v1/chat/completions'
+    model: 'llama3-8b-8192'
+    max-tokens: 4096
+    stream: false
+```
+`<0.0.5`版本配置：
+```yaml
+sy:
+  chat:
+    api-key: 'YBHTRrFtcl0aJOFBPDgpebYwxXWcJGRUplm1PVMeCULc'
     base-url: 'https://ollama.yamazing.cn/v1/chat/completions'
     model: 'llama3-8b-8192'
     max-tokens: 4096
