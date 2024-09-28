@@ -50,8 +50,6 @@ sy:
   chat:
     api-keys:
       - 'YBHTRrFtcl0aJOFBPDgpebYwxXWcJGRUplm1PVMeCULc'
-      - '5kDGIoFl45mK6cWSByMPYQuFrw43ln-cxkS1Iva5WpLq'
-      - 'ztadxOlOPkjoWclRG-xdAe8yPbNCcIoAbdxtbh2fcDC9'
     base-url: 'https://ollama.yamazing.cn/v1/chat/completions'
     model: 'llama3-8b-8192'
     max-tokens: 4096
