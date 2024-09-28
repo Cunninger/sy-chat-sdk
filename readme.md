@@ -24,7 +24,7 @@ SyChat SDK 是一个高性能、可扩展的聊天机器人开发工具包，旨
 
 ### 配置
 1. 在`pom.xml`文件中添加以下依赖：
-- `0.0.5`版本已同步maven中央镜像，拉取到阿里云镜像可能会有延迟。
+- `0.0.6`版本已同步maven中央镜像，拉取到阿里云镜像可能会有延迟。
 ```xml
 <dependency>
    <groupId>io.gitee.a-little-zhu</groupId>
